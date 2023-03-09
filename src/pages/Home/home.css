@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .brand-right {
+    @apply absolute top-3 right-2.5 
+    text-white text-xxs;
+  }
+  .brand-left {
+    @apply absolute top-3 left-2 
+    text-white text-xxs;
+  }
+  .brand-left-2 {
+    @apply absolute text-white text-xxs 
+    left-2.5 top-[3.8rem];
+  }
+  .brand-right-2 {
+    @apply absolute text-white text-xxs
+    top-3 right-16;
+  }
+}

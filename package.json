@@ -9,13 +9,27 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.3",
+    "classnames": "^2.3.2",
+    "daisyui": "^2.51.1",
+    "dotenv": "^16.0.3",
+    "hamburger-react": "^2.5.0",
+    "immutable": "^4.2.4",
+    "pocketbase-react": "^0.1.28",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.2",
+    "react-icons": "^4.7.1",
+    "react-number-format": "^5.1.4",
+    "react-router-dom": "^6.8.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-react": "^3.1.0",
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.7",
     "vite": "^4.1.0"
   }
 }

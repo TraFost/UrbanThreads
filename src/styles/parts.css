@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .navbar-container {
+    @apply flex flex-col justify-center md:flex-row
+    md:justify-between md:items-center bg-black
+   text-white h-[171px] md:h-[80px];
+  }
+  .footer-container {
+    @apply flex justify-around items-center 
+    md:justify-evenly bg-black 
+    text-white h-[250px];
+  }
+  .nav-list {
+    @apply cursor-pointer hover:border-b 
+    hover:border-white hover:animate-bounce;
+  }
+  .nav-button {
+    @apply cursor-pointer hover:bg-white hover:text-black 
+    px-7 rounded-2xl mr-7 btn-sm;
+  }
+}
