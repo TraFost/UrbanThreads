@@ -37,6 +37,9 @@ const productSlice = createSlice({
       });
       state.products = updated;
     },
+    addProduct: (state, action) => {
+      state.products = [...state.products, action.payload];
+    },
     // addToCart: (state, action) => {
     //   state.cart = [...state.cart, { ...action.payload }]; // action.payload is the product, so what we pass into the action is an object
     //   state.items = state.cart.length;
@@ -45,6 +48,6 @@ const productSlice = createSlice({
   },
 });
 
-export const { getProducts, deleteProduct } = productSlice.actions;
+export const { getProducts, deleteProduct, addProduct } = productSlice.actions;
 
 export default productSlice.reducer;

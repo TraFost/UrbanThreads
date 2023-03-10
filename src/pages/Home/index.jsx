@@ -1,7 +1,5 @@
-import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchProducts } from "../../app/ProductSlice";
+import { useSelector } from "react-redux";
 import {
   FirstContent,
   SecondContent,
@@ -12,15 +10,7 @@ import Button from "../../components/Button";
 import "./home.css";
 
 const Home = () => {
-  // const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
-
-  // useEffect(() => {
-  //   dispatch(fetchProducts); // cara paujul, dispatch value dari fetch productnya dihandle didalem fetchProducts
-  //   // dispatch(getProducts(fetchProducts)); // regular way
-  // }, []);
-
-  // console.log(products);
 
   return (
     <main>

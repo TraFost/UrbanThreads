@@ -1,10 +1,12 @@
+import { useState } from "react";
 import { NumericFormat } from "react-number-format";
 import { useDispatch } from "react-redux";
+import { deleteProduct } from "../../app/productSlice";
 import pb from "../../lib/pocketbase";
 import Button from "../Button";
-import { deleteProduct } from "../../app/productSlice";
 
 const DashboardLists = ({ product }) => {
+  const [isEdit, setIsEdit] = useState(false);
   const dispatch = useDispatch();
 
   const imgProduct = pb.getFileUrl(product, product.productImage);
@@ -12,6 +14,12 @@ const DashboardLists = ({ product }) => {
   const handleDelete = () => {
     dispatch(deleteProduct(product));
   };
+
+  const handleEdit = () => {
+    setIsEdit(!isEdit);
+  };
+
+  console.log(product.productPrice, product.qty);
 
   return (
     <tr>
@@ -31,14 +39,21 @@ const DashboardLists = ({ product }) => {
       </td>
       <td>{product.productDescription}</td>
       <td>
-        <NumericFormat value={product.productPrice} type="text" prefix="$" />
+        <NumericFormat
+          value={product.productPrice}
+          displayType="text"
+          prefix="$"
+        />
       </td>
       <td>{product.qty}</td>
-      <th className="flex justify-center">
+      <th onClick={handleEdit} className="flex justify-center">
         <Button>Edit</Button>
-        <Button onClick={handleDelete} className="ml-3">
-          Delete
-        </Button>
+        {isEdit && <Button className="ml-3">Submit</Button>}
+        {!isEdit && (
+          <Button onClick={handleDelete} className="ml-3">
+            Delete
+          </Button>
+        )}
       </th>
     </tr>
   );
