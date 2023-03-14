@@ -47,7 +47,9 @@ const Navbar = () => {
       <div className="hidden md:flex md:items-center md:justify-between">
         <ul className="hidden md:flex md:gap-5 pr-5">
           <li className="nav-list">Store</li>
-          <li className="nav-list">About</li>
+          <li className="nav-list">
+            <a onClick={() => navigate("/about")}>About</a>
+          </li>
         </ul>
         {isValid ? (
           <>

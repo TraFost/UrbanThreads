@@ -13,7 +13,7 @@ const Login = () => {
     setIsLoading(true);
     await pb.collection("users").authWithPassword(data.email, data.password);
     setIsLoading(false);
-    navigate("/");
+    navigate("/dashboard");
   };
 
   return (

@@ -3,6 +3,7 @@ import {
   SlSocialFacebook,
   SlSocialLinkedin,
 } from "react-icons/sl";
+import { DiGithubBadge } from "react-icons/di";
 import "../styles/parts.css";
 
 const Footer = () => {
@@ -28,15 +29,14 @@ const Footer = () => {
             <SlSocialLinkedin className="text-2xl mb-3 md:mb-0 cursor-pointer" />
             <SlSocialInstagram className="text-2xl mb-3 md:mb-0 cursor-pointer" />
             <SlSocialFacebook className="text-2xl mt-3 md:mb-0 md:mt-0 cursor-pointer" />
+            <DiGithubBadge className="text-2xl mt-3 md:mb-0 md:mt-0 cursor-pointer" />
           </div>
         </div>
       </div>
       <div className="pt-4 flex justify-evenly">
-        <p className="hidden md:block">Processing of personal data</p>
         <p className="text-black">
           URBAM STREETWEAR © 2022 All rights reserved
         </p>
-        <p className="hidden md:block">Legal Information</p>
       </div>
     </footer>
   );
