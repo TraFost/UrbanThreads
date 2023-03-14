@@ -4,7 +4,6 @@ import pb from "../lib/pocketbase";
 const initialState = {
   products: [],
   cart: [],
-  edit: [],
   items: 0,
   total: 0,
   searchField: "",
@@ -28,26 +27,49 @@ const productSlice = createSlice({
   name: "product",
   initialState,
   reducers: {
+    // ** Product Actions //
     getProducts: (state, action) => {
       state.products = action.payload;
+    },
+    addProduct: (state, action) => {
+      state.products = [...state.products, action.payload];
+    },
+    editProduct: (state, action) => {
+      state.products = state.products.map((item) => {
+        if (item.id === action.payload.id) {
+          return {
+            ...item,
+            ...action.payload,
+          };
+        }
+        return item;
+      });
     },
     deleteProduct: (state, action) => {
       const updated = state.products.filter((item) => {
         return item.id !== action.payload.id;
       });
-      state.products = updated;
+      if (updated.length > 0) {
+        state.products = updated;
+      } else {
+        state.products = [];
+      }
     },
-    addProduct: (state, action) => {
-      state.products = [...state.products, action.payload];
+    handleSearch: (state, action) => {
+      state.searchField = action.payload;
     },
-    // addToCart: (state, action) => {
-    //   state.cart = [...state.cart, { ...action.payload }]; // action.payload is the product, so what we pass into the action is an object
-    //   state.items = state.cart.length;
-    //   state.total = state.cart.reduce((acc, item) => acc + item.price, 0);
-    // },
+    // ** Product Actions //
+
+    // ** Cart Actions //
   },
 });
 
-export const { getProducts, deleteProduct, addProduct } = productSlice.actions;
+export const {
+  getProducts,
+  deleteProduct,
+  addProduct,
+  editProduct,
+  handleSearch,
+} = productSlice.actions;
 
 export default productSlice.reducer;

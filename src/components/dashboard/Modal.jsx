@@ -14,7 +14,6 @@ const Modal = () => {
     handleSubmit,
     watch,
     formState: { errors },
-    getValues,
   } = useForm({
     defaultValues: {
       productName: "",

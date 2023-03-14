@@ -1,25 +1,47 @@
 import { useState } from "react";
 import { NumericFormat } from "react-number-format";
 import { useDispatch } from "react-redux";
-import { deleteProduct } from "../../app/productSlice";
+import { deleteProduct, editProduct } from "../../app/productSlice";
 import pb from "../../lib/pocketbase";
 import Button from "../Button";
 
 const DashboardLists = ({ product }) => {
   const [isEdit, setIsEdit] = useState(false);
+  const [dataNumber, setDataNumber] = useState({
+    qty: product.qty || 0,
+    productPrice: product.productPrice || 0,
+  });
+  const [dataString, setDataString] = useState({
+    productName: product.productName || "",
+    productDescription: product.productDescription || "",
+  });
   const dispatch = useDispatch();
 
   const imgProduct = pb.getFileUrl(product, product.productImage);
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     dispatch(deleteProduct(product));
+
+    await pb.collection("products").delete(product.id);
   };
 
-  const handleEdit = () => {
-    setIsEdit(!isEdit);
-  };
+  const handleEditData = async () => {
+    const { qty, productPrice } = dataNumber;
+    const { productName, productDescription } = dataString;
 
-  console.log(product.productPrice, product.qty);
+    const data = {
+      id: product.id,
+      productName,
+      productDescription,
+      productPrice,
+      qty,
+    };
+
+    await pb.collection("products").update(product.id, data);
+    dispatch(editProduct(data));
+
+    setIsEdit(false);
+  };
 
   return (
     <tr>
@@ -32,23 +54,69 @@ const DashboardLists = ({ product }) => {
             </div>
           </div>
           <div>
-            <div className="font-bold">{product.productName}</div>
+            <div className="font-bold">
+              {isEdit ? (
+                <input
+                  type="text"
+                  defaultValue={product.productName}
+                  onChange={({ target: { value } }) =>
+                    setDataString({ ...dataString, productName: value })
+                  }
+                />
+              ) : (
+                product.productName
+              )}
+            </div>
             <div className="text-sm opacity-50">Indonesia</div>
           </div>
         </div>
       </td>
-      <td>{product.productDescription}</td>
+      <td>
+        {isEdit ? (
+          <input
+            type="text"
+            defaultValue={product.productDescription}
+            onChange={({ target: { value } }) =>
+              setDataString({
+                ...dataString,
+                productDescription: value,
+              })
+            }
+          />
+        ) : (
+          product.productDescription
+        )}
+      </td>
       <td>
         <NumericFormat
+          type="number"
           value={product.productPrice}
-          displayType="text"
-          prefix="$"
+          thousandSeparator={isEdit ? false : true}
+          displayType={isEdit ? "input" : "text"}
+          prefix={isEdit ? "" : "$"}
+          onValueChange={({ floatValue }) => {
+            setDataNumber({ ...dataNumber, productPrice: floatValue });
+          }}
         />
       </td>
-      <td>{product.qty}</td>
-      <th onClick={handleEdit} className="flex justify-center">
+      <td>
+        <NumericFormat
+          type="number"
+          value={product.qty}
+          displayType={isEdit ? "input" : "text"}
+          thousandSeparator={isEdit ? false : true}
+          onValueChange={({ floatValue }) => {
+            setDataNumber({ ...dataNumber, qty: floatValue });
+          }}
+        />
+      </td>
+      <th onClick={() => setIsEdit(true)} className="flex justify-center">
         <Button>Edit</Button>
-        {isEdit && <Button className="ml-3">Submit</Button>}
+        {isEdit && (
+          <Button onClick={handleEditData} className="ml-3">
+            Submit
+          </Button>
+        )}
         {!isEdit && (
           <Button onClick={handleDelete} className="ml-3">
             Delete
