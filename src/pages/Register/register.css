@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .container-image {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "overlap";
+  }
+  .container-form {
+    @apply w-full pl-[33px] py-10
+    sm:pl-[200px] md:pl-[250px] lg:w-1/2
+    lg:pl-[100px] lg:pt-[54px] lg:pb-0;
+  }
+  .item-1 {
+    grid-area: overlap;
+    /* align-self: center;
+    justify-self: center; */
+  }
+  .item-2 {
+    grid-area: overlap;
+    align-self: center;
+    justify-self: center;
+  }
+  .button-register {
+    @apply border-none hover:bg-black 
+    hover:text-white font-extrabold text-sm;
+  }
+}
