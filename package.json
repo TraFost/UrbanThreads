@@ -13,6 +13,7 @@
     "classnames": "^2.3.2",
     "daisyui": "^2.51.1",
     "dotenv": "^16.0.3",
+    "framer-motion": "^10.4.0",
     "hamburger-react": "^2.5.0",
     "pocketbase-react": "^0.1.28",
     "react": "^18.2.0",

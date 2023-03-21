@@ -1,9 +1,11 @@
-import ClassNames from "classnames";
+import { Link } from "react-router-dom";
 import { NumericFormat } from "react-number-format";
+import ClassNames from "classnames";
 import pb from "../../lib/pocketbase";
+import "../../pages/Home/home.css";
 
 const ProductsLists = ({ product, index }) => {
-  const imgProducts = pb.getFileUrl(product, product.productImage);
+  const imgProducts = pb.getFileUrl(product, product.productImage[0]);
 
   const imgContainer = ClassNames("pb-0.5", {
     "col-start-2 col-end-3": index === 0,
@@ -21,7 +23,12 @@ const ProductsLists = ({ product, index }) => {
   return (
     <>
       <div className={imgContainer}>
-        <img src={imgProducts} alt="test" />
+        <div className="image-container relative hover:opacity-70">
+          <img src={imgProducts} alt="test" />
+          <button className="details-hover inset-0">
+            <Link to={`/${product.productName}`}>See Details</Link>
+          </button>
+        </div>
         <div
           className={
             index === 4

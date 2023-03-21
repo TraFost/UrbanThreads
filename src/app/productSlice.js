@@ -61,6 +61,54 @@ const productSlice = createSlice({
     // ** Product Actions //
 
     // ** Cart Actions //
+    addToCart: (state, action) => {
+      const { id, price, qty } = action.payload;
+      const item = state.cart.find((item) => item.id === id);
+      if (item) {
+        item.qty += qty;
+        state.items += qty;
+        state.total += price * qty;
+      } else {
+        state.cart = [...state.cart, action.payload];
+        state.items += qty;
+        state.total += price * qty;
+      }
+    },
+    incrementTotalPrice: (state, action) => {
+      const { id, price, qty, totalPrice } = action.payload;
+      const item = state.cart.find((item) => item.id === id);
+      if (item) {
+        item.qty = qty;
+        state.items += item.qty / qty;
+        item.price = price;
+        state.total += price * qty - totalPrice;
+      }
+    },
+    decrementTotalPrice: (state, action) => {
+      const { id, price, qty, totalPrice } = action.payload;
+      const item = state.cart.find((item) => item.id === id);
+      if (item) {
+        item.qty = qty;
+        if (item.qty === 0) {
+          state.cart = state.cart.filter((item) => item.id !== id);
+        }
+        state.items -= item.qty / qty;
+        item.price = price;
+        state.total -= totalPrice - price * qty;
+      }
+    },
+    deleteFromCart: (state, action) => {
+      const { id, totalPrice, qty } = action.payload;
+      state.cart = state.cart.filter((item) => item.id !== id);
+      state.items -= qty;
+      state.total -= totalPrice;
+    },
+    checkout: (state) => {
+      state.cart = [];
+      state.items = 0;
+      state.total = 0;
+    },
+    // ** Cart Actions //
   },
 });
 
@@ -70,6 +118,11 @@ export const {
   addProduct,
   editProduct,
   handleSearch,
+  addToCart,
+  incrementTotalPrice,
+  decrementTotalPrice,
+  deleteFromCart,
+  checkout,
 } = productSlice.actions;
 
 export default productSlice.reducer;

@@ -6,6 +6,7 @@ import { addProduct } from "../../app/productSlice";
 import pb from "../../lib/pocketbase";
 import Button from "../Button";
 import ImgList from "./ImgList";
+import "../../pages/Dashboard/dashboard.css";
 
 const Modal = () => {
   const dispatch = useDispatch();
@@ -69,7 +70,7 @@ const Modal = () => {
   };
 
   return createPortal(
-    <div className=" min-h-screen absolute inset-52 bg-gradient-to-r from-gray-500 to-black overflow-y-auto">
+    <div className=" min-h-screen absolute inset-52 bg-gradient-to-r from-gray-500 to-black overflow-y-auto modal-animation">
       <div className="flex items-center justify-center p-12">
         <div className="mx-auto w-full max-w-[550px] bg-white">
           <form onSubmit={handleSubmit(productData)} className="py-6 px-9">

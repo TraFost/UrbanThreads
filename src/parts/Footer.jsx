@@ -29,7 +29,9 @@ const Footer = () => {
             <SlSocialLinkedin className="text-2xl mb-3 md:mb-0 cursor-pointer" />
             <SlSocialInstagram className="text-2xl mb-3 md:mb-0 cursor-pointer" />
             <SlSocialFacebook className="text-2xl mt-3 md:mb-0 md:mt-0 cursor-pointer" />
-            <DiGithubBadge className="text-2xl mt-3 md:mb-0 md:mt-0 cursor-pointer" />
+            <a href="https://github.com/TraFost/UrbanThreads">
+              <DiGithubBadge className="text-2xl mt-3 md:mb-0 md:mt-0 cursor-pointer" />
+            </a>
           </div>
         </div>
       </div>

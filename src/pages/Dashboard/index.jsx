@@ -4,6 +4,7 @@ import { fetchProducts, handleSearch } from "../../app/productSlice";
 import DashboardLists from "../../components/dashboard/DashboardLists";
 import Button from "../../components/Button";
 import Modal from "../../components/dashboard/Modal";
+import "./dashboard.css";
 
 const Dashboard = () => {
   const [showModal, setShowModal] = useState(false);
@@ -60,6 +61,7 @@ const Dashboard = () => {
                 <input
                   type="text"
                   value={searchField}
+                  className="search-field input-sm"
                   onChange={({ target: { value } }) =>
                     dispatch(handleSearch(value))
                   }

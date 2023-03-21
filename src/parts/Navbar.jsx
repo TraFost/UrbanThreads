@@ -83,7 +83,10 @@ const Navbar = () => {
                   </span>
                   <span className="text-info">Subtotal: {total}</span>
                   <div className="card-actions">
-                    <Button className="btn btn-primary btn-block hover:text-black hover:bg-white rounded-2xl">
+                    <Button
+                      className="btn btn-primary btn-block hover:text-black hover:bg-white rounded-2xl"
+                      onClick={() => navigate("/cart")}
+                    >
                       View cart
                     </Button>
                   </div>

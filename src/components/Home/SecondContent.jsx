@@ -24,11 +24,11 @@ const SecondContent = ({ img }) => {
       </div>
       <div className="grid grid-rows-2 gap-y-7 relative">
         <div className="self-end">
-          <figure className="absolute md:-top-9 lg:-top-[3.7rem]">
+          <figure className="absolute md:-top-9 -top-8 lg:-top-11">
             <img src={img.imgEight} alt="graffiti" />
           </figure>
           <img src={img.imgSeven} alt="brand images" />
-          <p className="brand-left-2">Veja</p>
+          <p className="brand-left-2 top-7 md:top-10 lg:top-11">Veja</p>
         </div>
         <div className="z-20 relative">
           <p className="brand-left">Nike</p>
@@ -38,7 +38,9 @@ const SecondContent = ({ img }) => {
       <div className="row-span-2 col-span-2 z-20">
         <div className="grid items-end gap-y-8">
           <figure className="relative">
-            <p className="brand-right-2">Stüssy</p>
+            <p className="brand-right-2 right-5 lg:right-8 xl:right-16 2xl:right-28">
+              Stüssy
+            </p>
             <img src={img.imgOne} alt="brand images" />
           </figure>
           <figure className="relative">

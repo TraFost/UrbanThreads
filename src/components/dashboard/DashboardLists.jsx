@@ -17,7 +17,7 @@ const DashboardLists = ({ product }) => {
   });
   const dispatch = useDispatch();
 
-  const imgProduct = pb.getFileUrl(product, product.productImage);
+  const imgProduct = pb.getFileUrl(product, product.productImage[0]);
 
   const handleDelete = async () => {
     dispatch(deleteProduct(product));

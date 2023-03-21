@@ -19,4 +19,14 @@
     @apply absolute text-white text-xxs
     top-3 right-16;
   }
+  .image-container {
+    transition: all 0.3s ease-in-out;
+  }
+  .details-hover {
+    display: none;
+  }
+  .image-container:hover > .details-hover {
+    @apply block absolute w-full 
+    h-full text-[#000000] text-lg;
+  }
 }
