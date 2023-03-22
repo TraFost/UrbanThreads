@@ -3,14 +3,14 @@ import { motion } from "framer-motion";
 
 const Register = () => {
   return (
-    <div.motion
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       className="flex"
     >
       <RegisterForm />
-    </div.motion>
+    </motion.div>
   );
 };
 
