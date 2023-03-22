@@ -1,15 +1,11 @@
+import { Suspense, lazy } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import {
-  Register,
-  Home,
-  Login,
-  Dashboard,
-  About,
-  Single,
-  Cart,
-  NotFound,
-} from "../../pages";
+import { Register, Login, About, Single, Cart, NotFound } from "../../pages";
 import { AnimatePresence } from "framer-motion";
+import Skeleton from "../Skeleton";
+
+const Home = lazy(() => import("../../pages/Home"));
+const Dashboard = lazy(() => import("../../pages/Dashboard"));
 
 const PageRoutes = () => {
   const location = useLocation();
@@ -18,10 +14,24 @@ const PageRoutes = () => {
     <AnimatePresence>
       <Routes location={location} key={location.pathname}>
         <Route path="*" element={<NotFound />} />
-        <Route index element={<Home />} />
+        <Route
+          index
+          element={
+            <Suspense fallback={<Skeleton />}>
+              <Home />
+            </Suspense>
+          }
+        />
         <Route path="register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/dashboard"
+          element={
+            <Suspense fallback={<Skeleton />}>
+              <Dashboard />
+            </Suspense>
+          }
+        />
         <Route path="/:name" element={<Single />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/about" element={<About />} />
