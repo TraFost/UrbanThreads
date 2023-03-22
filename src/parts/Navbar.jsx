@@ -116,7 +116,10 @@ const Navbar = () => {
             </div>
           </>
         ) : (
-          <Button onClick={() => navigate("/login")} className="nav-button">
+          <Button
+            onClick={() => navigate("/login")}
+            className="nav-button rounded-none"
+          >
             LOGIN
           </Button>
         )}
