@@ -21,7 +21,7 @@ const CartSummary = () => {
     alert("Thank you for your purchase! :)");
   };
   return (
-    <>
+    <div>
       <div className="hidden lg:block">
         <div className="flex justify-between items-center md:justify-around mx-3 md:mx-0">
           <p className="text-lg font-semibold ml-4 md:ml-1">Total Items</p>
@@ -33,9 +33,13 @@ const CartSummary = () => {
         <p className="text-lg font-semibold ml-4 md:-ml-1">Quantity</p>
         <p className="text-lg font-semibold mr-4 md:mr-0.5">{items}</p>
       </div>
-      <div className="flex justify-between items-center md:justify-around mx-3 md:mx-0">
-        <p className="text-lg font-semibold ml-4 md:ml-0.5">Shipping</p>
-        <p className="text-lg font-semibold mr-4 md:mr-0.5">$0</p>
+      <div className="lg:mr-2">
+        <div className="flex justify-between items-center md:justify-around mx-3 md:mx-0">
+          <p className="text-lg font-semibold pl-4 md:pl-0 pr-2 lg:pr-0">
+            Shipping
+          </p>
+          <p className="text-lg font-semibold pr-4 md:pr-0">$0</p>
+        </div>
       </div>
       <NumericFormat
         value={total}
@@ -44,9 +48,11 @@ const CartSummary = () => {
         thousandSeparator={true}
         renderText={(value) => (
           <>
-            <div className="flex justify-between items-center mx-7 md:justify-around md:mx-0 ">
-              <p className="text-lg font-semibold md:ml-3.5">Total</p>
-              <p className="text-lg font-semibold">{value}</p>
+            <div>
+              <div className="flex justify-between items-center mx-7 md:justify-around md:mx-0 ">
+                <p className="text-lg font-semibold">Total</p>
+                <p className="text-lg font-semibold">{value}</p>
+              </div>
             </div>
           </>
         )}
@@ -59,7 +65,7 @@ const CartSummary = () => {
           Checkout
         </button>
       </div>
-    </>
+    </div>
   );
 };
 
