@@ -1,4 +1,4 @@
-import RegisterForm from "../../components/Register/registerForm";
+import RegisterForm from "../../components/Register/RegisterForm";
 import { motion } from "framer-motion";
 
 const Register = () => {
