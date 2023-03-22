@@ -4,6 +4,7 @@ import { addToCart } from "../../app/productSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { NumericFormat } from "react-number-format";
 import { GrAdd, GrSubtract } from "react-icons/gr";
+import { motion } from "framer-motion";
 import pb from "../../lib/pocketbase";
 import "./single.css";
 
@@ -20,9 +21,12 @@ const Single = () => {
   const data = products.filter((product) => product.productName === name);
   const single = data[0];
 
-  const dataImg = single.productImage.map((img) => {
-    return pb.getFileUrl(single, img);
-  });
+  let dataImg = [];
+  if (single) {
+    dataImg = single.productImage.map((img) => {
+      return pb.getFileUrl(single, img);
+    });
+  }
 
   const handleQtyChange = (e) => {
     const {
@@ -66,7 +70,12 @@ const Single = () => {
   return (
     <>
       {products && (
-        <div className="grid gap-y-3 md:grid-cols-2 lg:grid-cols-2 md:place-items-center pb-4 md:pb-0">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="grid gap-y-3 md:grid-cols-2 lg:grid-cols-2 md:place-items-center pb-4 md:pb-0"
+        >
           <div className="block md:hidden">
             <img
               src={dataImg[0]}
@@ -76,9 +85,10 @@ const Single = () => {
           </div>
           <div className="hidden md:block">
             <div className="grid grid-cols-2 gap-1.5 place-items-center">
-              {dataImg.map((item, index) => (
-                <img key={index} src={item} alt="Product" />
-              ))}
+              {dataImg &&
+                dataImg.map((item, index) => (
+                  <img key={index} src={item} alt="Product" />
+                ))}
             </div>
           </div>
           <div className="container">
@@ -123,7 +133,7 @@ const Single = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
     </>
   );

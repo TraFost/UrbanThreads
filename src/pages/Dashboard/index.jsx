@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchProducts, handleSearch } from "../../app/productSlice";
+import { handleSearch } from "../../app/productSlice";
+import { motion } from "framer-motion";
 import DashboardLists from "../../components/dashboard/DashboardLists";
 import Button from "../../components/Button";
 import Modal from "../../components/dashboard/Modal";
@@ -25,22 +26,18 @@ const Dashboard = () => {
     }
   );
 
-  useEffect(() => {
-    dispatch(fetchProducts); // cara paujul, dispatch value dari fetch productnya dihandle didalem fetchProducts
-    // dispatch(getProducts(fetchProducts)); // regular way
-  }, [dispatch]);
-
-  const handleModal = () => {
-    setShowModal(!showModal);
-  };
-
   const handleSearchButton = () => {
     setIsSearch(!isSearch);
     dispatch(handleSearch(""));
   };
 
   return (
-    <div className="overflow-x-auto w-full my-8">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="overflow-x-auto w-full my-8"
+    >
       <table className="table w-full">
         <thead>
           <tr>
@@ -51,7 +48,7 @@ const Dashboard = () => {
             <th>Qty</th>
             <th className="flex justify-around items-center">
               <Button
-                onClick={handleModal}
+                onClick={() => setShowModal(!showModal)}
                 className="border-black hover:text-black hover:bg-white"
               >
                 Add Product
@@ -105,7 +102,7 @@ const Dashboard = () => {
           </tr>
         </tfoot>
       </table>
-    </div>
+    </motion.div>
   );
 };
 

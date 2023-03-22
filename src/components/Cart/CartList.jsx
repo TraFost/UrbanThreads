@@ -48,7 +48,7 @@ const CartList = ({ item, price, index }) => {
     <>
       {item && (
         <div className="">
-          <div className="flex items-center justify-around">
+          <div className="flex items-center flex-wrap sm:flex-nowrap  justify-around">
             <picture className="w-[15%] lg:w-[20%]">
               <img
                 src={item.image}
