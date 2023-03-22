@@ -5,5 +5,6 @@ import Dashboard from "./Dashboard";
 import About from "./About";
 import Single from "./Single";
 import Cart from "./Cart";
+import NotFound from "./NotFound";
 
-export { Register, Home, Login, Dashboard, About, Single, Cart };
+export { Register, Home, Login, Dashboard, About, Single, Cart, NotFound };

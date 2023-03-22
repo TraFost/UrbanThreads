@@ -34,8 +34,8 @@ const CartSummary = () => {
         <p className="text-lg font-semibold mr-4 md:mr-0.5">{items}</p>
       </div>
       <div className="flex justify-between items-center md:justify-around mx-3 md:mx-0">
-        <p className="text-lg font-semibold ml-4 md:ml-1">Shipping</p>
-        <p className="text-lg font-semibold mr-4 md:mr-2.5">$0</p>
+        <p className="text-lg font-semibold ml-4 md:ml-0.5">Shipping</p>
+        <p className="text-lg font-semibold mr-4 md:mr-0.5">$0</p>
       </div>
       <NumericFormat
         value={total}
@@ -45,14 +45,17 @@ const CartSummary = () => {
         renderText={(value) => (
           <>
             <div className="flex justify-between items-center mx-7 md:justify-around md:mx-0 ">
-              <p className="text-lg font-semibold">Total</p>
+              <p className="text-lg font-semibold md:ml-3.5">Total</p>
               <p className="text-lg font-semibold">{value}</p>
             </div>
           </>
         )}
       />
       <div className="text-center mt-10 mb-6">
-        <button className="btn btn-primary hover:bg-white hover:text-black" onClick={handleCheckout}>
+        <button
+          className="btn btn-primary hover:bg-white hover:text-black"
+          onClick={handleCheckout}
+        >
           Checkout
         </button>
       </div>

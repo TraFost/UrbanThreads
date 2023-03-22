@@ -24,11 +24,11 @@ const SecondContent = ({ img }) => {
       </div>
       <div className="grid grid-rows-2 gap-y-7 relative">
         <div className="self-end">
-          <figure className="absolute md:-top-9 -top-8 lg:-top-11">
+          <figure className="absolute md:-top-9 -top-8 lg:-top-14">
             <img src={img.imgEight} alt="graffiti" />
           </figure>
           <img src={img.imgSeven} alt="brand images" />
-          <p className="brand-left-2 top-7 md:top-10 lg:top-11">Veja</p>
+          <p className="brand-left-2 top-7 md:top-10 lg:top-14">Veja</p>
         </div>
         <div className="z-20 relative">
           <p className="brand-left">Nike</p>

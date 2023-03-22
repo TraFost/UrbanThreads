@@ -1,20 +1,22 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Register, Home, Login, Dashboard, About, Single, Cart } from "./pages";
+import { useEffect } from "react";
+import { BrowserRouter } from "react-router-dom";
 import { Navbar, Footer } from "./parts";
+import { fetchProducts } from "./app/productSlice";
+import { useDispatch } from "react-redux";
+import PageRoutes from "./components/Routes/PageRoutes";
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProducts); // cara paujul, dispatch value dari fetch productnya dihandle didalem fetchProducts
+    // dispatch(getProducts(fetchProducts)); // regular way
+  }, [dispatch]);
+
   return (
     <BrowserRouter>
       <Navbar />
-      <Routes>
-        <Route path="register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route index element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/:name" element={<Single />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
+      <PageRoutes />
       <Footer />
     </BrowserRouter>
   );

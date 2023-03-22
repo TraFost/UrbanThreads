@@ -8,38 +8,43 @@ const ProductsLists = ({ product, index }) => {
   const imgProducts = pb.getFileUrl(product, product.productImage[0]);
 
   const imgContainer = ClassNames("pb-0.5", {
-    "col-start-2 col-end-3": index === 0,
-    "": index === 1,
-    "w-[64.5%]": index === 2,
-    "col-start-1 col-end-3 justify-self-end self-end": index === 3,
-    "col-start-3 col-end-6": index === 4,
-    "col-start-1 col-end-3 justify-self-end": index === 5,
-    "col-start-3": index === 6,
-    "col-start-4 w-[64.4%]": index === 7,
-    "col-start-1 col-end-3 justify-self-end self-end ": index === 8,
-    "col-start-3 col-end-5": index === 9,
+    "md:justify-self-end lg:col-start-2 lg:col-end-3": index === 0,
+    "md:justify-self-start self-end lg:self-start": index === 1,
+    "md:justify-self-end lg:justify-self-start lg:w-[64.5%]": index === 2,
+    "md:justify-self-start self-end lg:col-start-1 lg:col-end-3 lg:justify-self-end lg:self-end":
+      index === 3,
+    "md:justify-self-end self-end lg:self-start lg:justify-self-start lg:col-start-3 lg:col-end-6":
+      index === 4,
+    "md:justify-self-start self-end lg:self-start lg:col-start-1 lg:col-end-3 lg:justify-self-end":
+      index === 5,
+    "md:justify-self-end self-end lg:justify-self-start lg:self-start lg:col-start-3":
+      index === 6,
+    "md:justify-self-start lg:col-start-4 lg:w-[64.4%]": index === 7,
+    "md:justify-self-end lg:col-start-1 lg:col-end-3 lg:justify-self-end lg:self-end ":
+      index === 8,
+    "md:justify-self-start self-end lg:self-start lg:col-start-3 lg:col-end-5":
+      index === 9,
   });
 
   return (
     <>
       <div className={imgContainer}>
-        <div className="image-container relative hover:opacity-70">
-          <img src={imgProducts} alt="test" />
+        <div className="image-container relative hover:opacity-70 flex justify-center items-center md:flex-none">
+          <img
+            src={imgProducts}
+            alt="test"
+            className="w-1/2 md:w-[12.688rem] lg:w-full"
+          />
           <button className="details-hover inset-0">
             <Link to={`/${product.productName}`}>See Details</Link>
           </button>
         </div>
-        <div
-          className={
-            index === 4
-              ? "border-b border-b-black flex justify-between w-[93%] pt-2"
-              : "border-b border-b-black flex justify-between pt-2" &&
-                index === 9
-              ? "border-b border-b-black flex justify-between w-[95%] pt-2"
-              : "border-b border-b-black flex justify-between pt-2"
-          }
-        >
-          <p className="font-extrabold cursor-pointer">{product.productName}</p>
+        <div className="border-b border-b-black flex justify-between pt-2 pb-0.5 lg:pt-3.5 m-auto">
+          <div className="">
+            <p className="font-extrabold cursor-pointer">
+              {product.productName}
+            </p>
+          </div>
           <NumericFormat
             value={product.productPrice}
             prefix="$"

@@ -3,18 +3,19 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import pb from "../lib/pocketbase";
 import Hamburger from "hamburger-react";
+import HamburgerLists from "../components/Navbar/HamburgerLists";
 import Button from "../components/Button";
 import logoImage from "../assets/urbam-logo.png";
 import "../styles/parts.css";
 
 const Navbar = () => {
   const [hamburger, setHamburger] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const { items, total } = useSelector((state) => state.product);
 
   const navigate = useNavigate();
 
   const isValid = pb.authStore.isValid; // check to see if user is logged in or not, returns boolean
-  const token = pb.authStore.token; // getting access token
   const model = pb.authStore.model; // getting user data, it contains email, name, etc
 
   let imgUser;
@@ -41,12 +42,14 @@ const Navbar = () => {
           <img src={logoImage} alt="urban-threads" />
         </figure>
         <div className="flex items-start md:hidden">
-          <Hamburger toggle={setHamburger} toggled={hamburger} to size={33} />
+          <button onClick={() => setIsOpen(!isOpen)}>
+            <Hamburger toggle={setHamburger} toggled={hamburger} to size={33} />
+          </button>
         </div>
+        {isOpen && <HamburgerLists />}
       </div>
       <div className="hidden md:flex md:items-center md:justify-between">
         <ul className="hidden md:flex md:gap-5 pr-5">
-          <li className="nav-list">Store</li>
           <li className="nav-list">
             <a onClick={() => navigate("/about")}>About</a>
           </li>
@@ -84,7 +87,7 @@ const Navbar = () => {
                   <span className="text-info">Subtotal: {total}</span>
                   <div className="card-actions">
                     <Button
-                      className="btn btn-primary btn-block hover:text-black hover:bg-white rounded-2xl"
+                      className="btn btn-primary btn-block hover:text-black hover:bg-white"
                       onClick={() => navigate("/cart")}
                     >
                       View cart
@@ -103,9 +106,6 @@ const Navbar = () => {
                 tabIndex="0"
                 className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52 odd:text-black even:text-black"
               >
-                <li>
-                  <a>Profile</a>
-                </li>
                 <li>
                   <a onClick={() => navigate("/dashboard")}>Dashboard</a>
                 </li>

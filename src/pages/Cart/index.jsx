@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { BiArrowBack } from "react-icons/bi";
+import { motion } from "framer-motion";
 import EmptyCart from "../../components/Cart/EmptyCart";
 import CartList from "../../components/Cart/CartList";
 import CartSummary from "../../components/Cart/CartSummary";
@@ -14,7 +15,12 @@ const Cart = () => {
       {cart.length === 0 ? (
         <EmptyCart />
       ) : (
-        <div className="mt-6">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="mt-6"
+        >
           <div className="flex gap-2 lg:gap-0 ml-4">
             <div className="block lg:hidden">
               <button onClick={() => nav(-1)}>
@@ -49,7 +55,7 @@ const Cart = () => {
               <CartSummary />
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
     </>
   );
