@@ -6,6 +6,7 @@ import "../../pages/Home/home.css";
 
 const ProductsLists = ({ product, index }) => {
   const imgProducts = pb.getFileUrl(product, product.productImage[0]);
+  const isValid = pb.authStore.isValid;
 
   const imgContainer = ClassNames("pb-0.5", {
     "md:justify-self-end lg:col-start-2 lg:col-end-3": index === 0,
@@ -36,7 +37,9 @@ const ProductsLists = ({ product, index }) => {
             className="w-1/2 md:w-[12.688rem] lg:w-full"
           />
           <button className="details-hover inset-0">
-            <Link to={`/${product.productName}`}>See Details</Link>
+            <Link to={isValid ? `/${product.productName}` : "/login"}>
+              See Details
+            </Link>
           </button>
         </div>
         <div className="border-b border-b-black flex justify-between pt-2 pb-0.5 lg:pt-3.5 m-auto">

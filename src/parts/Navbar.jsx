@@ -41,12 +41,12 @@ const Navbar = () => {
         >
           <img src={logoImage} alt="urban-threads" />
         </figure>
-        <div className="flex items-start md:hidden">
+        <div className="flex md:hidden relative">
           <button onClick={() => setIsOpen(!isOpen)}>
             <Hamburger toggle={setHamburger} toggled={hamburger} to size={33} />
           </button>
+          {isOpen && <HamburgerLists logout={logout} />}
         </div>
-        {isOpen && <HamburgerLists />}
       </div>
       <div className="hidden md:flex md:items-center md:justify-between">
         <ul className="hidden md:flex md:gap-5 pr-5">
@@ -116,7 +116,10 @@ const Navbar = () => {
             </div>
           </>
         ) : (
-          <Button onClick={() => navigate("/login")} className="nav-button">
+          <Button
+            onClick={() => navigate("/login")}
+            className="nav-button rounded-none"
+          >
             LOGIN
           </Button>
         )}

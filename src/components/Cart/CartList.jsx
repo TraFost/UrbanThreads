@@ -53,11 +53,7 @@ const CartList = ({ item, price, index }) => {
               <img
                 src={item.image}
                 alt="product Image"
-                className={
-                  index === 0
-                    ? "w-full h-full object-cover ml-3"
-                    : "w-full h-full object-cover"
-                }
+                className="w-[70%] md:w-full h-full object-cover rounded-tl-lg rounded-bl-lg rounded-tr-lg rounded-br-lg"
               />
             </picture>
             <h2>{item.name}</h2>
