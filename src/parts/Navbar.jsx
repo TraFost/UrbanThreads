@@ -24,7 +24,7 @@ const Navbar = () => {
     imgUser = pb.getFileUrl(model, model.avatar); // ** get user image from the pb database
   } else {
     imgUser =
-      "https://appletradein-au.likewize.com/_nuxt/img/product_placeholder.6d9cbdf.svg";
+      "https://depositphotos.com/vector-images/profile-placeholder.html";
   }
 
   const logout = () => {
