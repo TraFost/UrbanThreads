@@ -16,6 +16,8 @@ export const fetchProducts = async (dispatch) => {
 
     const data = JSON.stringify(items);
     const actualData = JSON.parse(data);
+    // console.log(actualData);
+    console.log(items);
 
     dispatch(getProducts(actualData));
   } catch (err) {
