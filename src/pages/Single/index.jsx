@@ -11,8 +11,9 @@ import "./single.css";
 const Single = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
-  const { name } = useParams();
+  const isValid = pb.authStore.isValid;
 
+  const { name } = useParams();
   const [qty, setQty] = useState(1);
   const [loading, setLoading] = useState(false);
 
@@ -126,7 +127,7 @@ const Single = () => {
                   className={
                     loading ? "btn btn-block loading" : "btn btn-block"
                   }
-                  onClick={addCart}
+                  onClick={isValid ? addCart : () => nav("/login")}
                 >
                   {loading ? "" : "Add To cart"}
                 </button>
