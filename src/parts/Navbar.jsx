@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+
 import pb from "../lib/pocketbase";
 import Hamburger from "hamburger-react";
 import HamburgerLists from "../components/Navbar/HamburgerLists";
@@ -19,13 +20,8 @@ const Navbar = () => {
   const model = pb.authStore.model; // getting user data, it contains email, name, etc
 
   let imgUser;
-
-  if (isValid && model) {
-    imgUser = pb.getFileUrl(model, model.avatar); // ** get user image from the pb database
-  } else {
-    imgUser =
-      "https://depositphotos.com/vector-images/profile-placeholder.html";
-  }
+  if (isValid && model) imgUser = pb.getFileUrl(model, model.avatar);
+  else imgUser = "";
 
   const logout = () => {
     pb.authStore.clear();
